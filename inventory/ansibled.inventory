@@ -1,0 +1,7 @@
+# hosts.inventory
+
+[vpc]
+vpc_aws.ansibled
+
+[project.ansibled:children]
+vpc_aws
