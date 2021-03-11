@@ -42,10 +42,6 @@
     rules: "{{ item.rules }}"
     register: create_elb
 
-- name: create EC2 key
-  ec2_key:
-    name: "{{ vpc_key }}"
-   
 - name: create Route 53 CNAME
   route53:
       command: "create"
