@@ -45,15 +45,8 @@
 - name: create EC2 key
   ec2_key:
     name: "{{ vpc_key }}"
-
-- name: create Route 53 private hosted zone
-  route53_zone:
-    zone: "{{ vpc_dns_zone }}"
-    state: present
-    vpc_id: "{{ vpc_id }}"
-    vpc_region: "{{ aws_region }}"
    
-- name: create CNAME
+- name: create Route 53 CNAME
   route53:
       command: "create"
       zone: "{{ vpc_dns_zone }}"
