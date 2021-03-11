@@ -27,7 +27,7 @@ vpc_security_groups:
         ports:
           - 80
           - 443
-
+# ELB - listening on ports 80 & 443
 - amazon.aws.ec2_elb_lb:
     name: "port 80 ELB"
     state: present
