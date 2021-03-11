@@ -52,3 +52,11 @@
     state: present
     vpc_id: "{{ vpc_id }}"
     vpc_region: "{{ aws_region }}"
+   
+- name: create CNAME
+  route53:
+      command: "create"
+      zone: "{{ vpc_dns_zone }}"
+      record: "www.orely.com"
+      type: "CNAME"
+      value: "host1.orely.com"
