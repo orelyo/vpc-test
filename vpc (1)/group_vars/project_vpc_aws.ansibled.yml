@@ -1,8 +1,0 @@
-vpc_name: ansibled-vpc
-vpc_key: ansibled-key
-vpc_dns_zone: ansibled
-
-# credentials for AWS 
-aws_region:  XXXXX
-aws_access_key: XXXXX
-aws_secret_key:XXXXX
