@@ -1,0 +1,50 @@
+# vpc_aws.ansibled.yml
+
+# subnets - two public and two private
+vpc_subnets:
+  private-a:
+    cidr: 10.0.1.0/24
+    az: "{{ aws_region }}a"
+  public-a:
+    cidr: 10.0.2.0/24
+    az: "{{ aws_region }}a"
+  private-b:
+    cidr: 10.0.3.0/24
+    az: "{{ aws_region }}b"
+  public-b:
+    cidr: 10.0.4.0/24
+    az: "{{ aws_region }}b"
+	
+
+# security groups for internet access for ports 443 and 80
+vpc_security_groups:
+
+  - name: allow-public-http
+    description: "Allow public web traffic"
+    rules:
+      - proto: tcp
+        cidr_ip: 0.0.0.0/0
+        ports:
+          - 80
+          - 443
+
+- amazon.aws.ec2_elb_lb:
+    name: "port 80 ELB"
+    state: present
+    region:  "{{ aws_region }}a"
+    cidr_ip: 0.0.0.0/0
+    listeners:
+      - protocol: http
+        load_balancer_port: 80
+        instance_port: 80        
+        
+- amazon.aws.ec2_elb_lb:
+    name: "port 443 ELB"
+    state: present
+    region:  "{{ aws_region }}a"
+    cidr_ip: 0.0.0.0/0
+    listeners:
+      - protocol: https
+        load_balancer_port: 443
+        instance_port: 443        
+        
